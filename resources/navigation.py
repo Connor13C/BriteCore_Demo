@@ -5,4 +5,4 @@ from flask import render_template, Response
 class Login(Resource):
     @staticmethod
     def get():
-        return Response(render_template('login.html'), mimetype='text/html')
+        return Response(render_template('index.html'), mimetype='text/html')

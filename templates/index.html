@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Feature Builder</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <form id="login_field">
+    <div class="input-group">
+        <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+    </div>
+    <div class="input-group">
+        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+      <button id="login">Log in</button>
+    </form>
+
+    <form id="post_request">
+      <label for="priority">Priority:</label>
+      <input type="text" id="priority"><br>
+      <label for="target_date">Target Date (MM/DD/YYYY):</label>
+      <input type="text" id="target_date"><br>
+        <label for="product_area">Product Area:</label>
+      <input type="text" id="product_area"><br>
+        <label for="client_name">Client Name:</label>
+      <input type="text" id="client_name"><br>
+        <label for="title">Title:</label>
+      <input type="text" id="title"><br>
+        <label for="description">Description:</label>
+      <input type="text" id="description"><br>
+      <button id="login">Submit</button>
+    </form>
+
+      <form id="get_request">
+        <div class="form-group">
+            <label for="clients">Client list:</label>
+            <select class="form-control" id="clients">
+                <option>Client A</option>
+                <option>Client B</option>
+                <option>Client C</option>
+                <option>Add new client</option>
+            </select>
+        </div>
+      <button id="find_request">Find</button>
+    </form>
+
+  </div>
+  <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+  <script type=text/javascript src="{{url_for('static', filename='popper.min.js') }}"></script>
+  <script type=text/javascript src="{{url_for('static', filename='bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='landing.js') }}"></script>
+</body>
+
+</html>
