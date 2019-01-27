@@ -10,7 +10,16 @@
 </head>
 
 <body>
-  <div class="container">
+      <ul id="choice">
+          <li><a id="post_r">Make a new feature request for client</a></li>
+          <li><a id="get_r">Find existing feature requests for client</a></li>
+          <li><a id="get_r_id">Get feature request by ID</a></li>
+          <li><a id="del_r_id">Delete existing feature by ID</a></li>
+          <li><a id="post_c">Add a client</a></li>
+          <li><a id="del_c">Delete an existing client</a></li>
+      </ul>
+
+      <div id="content">
     <form id="login_field">
     <div class="input-group">
         <input id="username" type="text" class="form-control" name="username" placeholder="Username">
@@ -49,7 +58,6 @@
         </div>
       <button id="find_request">Find</button>
     </form>
-
   </div>
   <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
   <script type=text/javascript src="{{url_for('static', filename='popper.min.js') }}"></script>

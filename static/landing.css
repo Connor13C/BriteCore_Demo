@@ -1,6 +1,31 @@
-form {
-  text-align: right
+body{
+    margin: 0;
+    text-align: right;
 }
-#post_request{
-  display: none
+form{
+    display: none;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+li:hover {
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+}
+#content {
+    margin-left: 25%;
+}
+#login_field {
+  display: block;
+}
+#choice {
+    display: none;
 }
