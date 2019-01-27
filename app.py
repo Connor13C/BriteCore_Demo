@@ -1,4 +1,5 @@
 import os
+import datetime
 
 from flask import Flask
 from flask_restful import Api
@@ -15,6 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL', 'sqlite:///data.db')
 app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(hours=1)
 app.secret_key = 'britecore'
 api = Api(app)
 
