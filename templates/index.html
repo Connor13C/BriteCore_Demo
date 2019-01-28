@@ -11,12 +11,12 @@
 
 <body>
       <ul id="choice">
-          <li><a id="post_r">Make a new feature request for client</a></li>
-          <li><a id="get_r">Find existing feature requests for client</a></li>
-          <li><a id="get_r_id">Get feature request by ID</a></li>
-          <li><a id="del_r_id">Delete existing feature request by ID</a></li>
-          <li><a id="post_c">Add a client</a></li>
-          <li><a id="del_c">Delete an existing client</a></li>
+          <li><a id="nav_post_r">Make a new feature request for client</a></li>
+          <li><a id="nav_get_r">Find existing feature requests for client</a></li>
+          <li><a id="nav_get_r_id">Get feature request by ID</a></li>
+          <li><a id="nav_del_r_id">Delete existing feature request by ID</a></li>
+          <li><a id="nav_post_c">Add a client</a></li>
+          <li><a id="nav_del_c">Delete an existing client</a></li>
       </ul>
 
       <div id="content">
@@ -66,6 +66,25 @@
       <input type="text" id="req_id"><br>
       <button id="find_request_id">Find</button>
     </form>
+
+          <form id="del_request_id">
+        <label for="req_id">Enter request ID:</label>
+      <input type="text" id="del_req_id"><br>
+      <button id="delete_request_id">Delete</button>
+    </form>
+
+                    <form id="post_client">
+        <label for="req_id">Enter client name:</label>
+      <input type="text" id="client_name"><br>
+      <button id="find_client_name">Add client</button>
+    </form>
+
+          <form id="del_client">
+        <label for="req_id">Enter client name:</label>
+      <input type="text" id="del_client_name"><br>
+      <button id="delete_client_name">Delete</button>
+    </form>
+
     <form id="results"></form>
   </div>
   <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
