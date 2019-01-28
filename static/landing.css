@@ -29,3 +29,7 @@ li:hover {
 #choice {
     display: none;
 }
+#results {
+    margin-left: 10%;
+    text-align: left;
+}

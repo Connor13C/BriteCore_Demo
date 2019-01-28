@@ -34,5 +34,5 @@ class Client(Resource):
 class ClientList(Resource):
     @jwt_required()
     def get(self):
-        return {'clients': [client.json()
+        return {'clients': [client.name
                             for client in ClientModel.find_all()]}
