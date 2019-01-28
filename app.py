@@ -9,7 +9,7 @@ from security import authenticate, identity
 from resources.navigation import Login
 from resources.user import UserRegister
 from resources.client import Client, ClientList
-from resources.request import Request, RequestList
+from resources.request import Request, RequestID, RequestList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -27,6 +27,7 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(Client, '/client/<string:name>')
 api.add_resource(ClientList, '/clients')
 api.add_resource(Request, '/request')
+api.add_resource(RequestID, '/request/<int:request_id>')
 api.add_resource(RequestList, '/requests')
 
 

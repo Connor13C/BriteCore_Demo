@@ -1,6 +1,7 @@
 var jwt;
 var origin = window.location.origin;
 
+
 $('#login').click(function () {
     $.ajax({
         type: "POST",
@@ -71,30 +72,7 @@ $('#get_r').click(function () {
     return false;
 });
 
-$('#find_request_id').click(function () {
-    $.ajax({
-        type: "GET",
-        url: origin + '/request',
-        dataType: 'json',
-        data: JSON.stringify({ "id": $('#req_id').val()}),
-        headers: {authorization: 'JWT ' + jwt['access_token'], contentType: 'application/json'},
-        success: function (data, textStatus, jQxhr) {
-		var req = data;
-		parse_requests(req)
-	    },
-	    error: function (jqXhr, textStatus, errorThrown) {
-		console.log(errorThrown);
-	    }
-    });
-    return false;
-});
-
-$('#get_r_id').click(function () {
-    $('form').hide();
-    $('#get_request_id').show();
-});
-
-$('#find_request').click(function () {
+$('#find_client_requests').click(function () {
     $.ajax({
         type: "GET",
         url: origin + '/client/' + $('#clients option:selected').text(),
@@ -113,12 +91,39 @@ $('#find_request').click(function () {
 });
 
 
+$('#find_request_id').click(function () {
+    fetch(origin + '/request/' + $('#req_id').val(), {
+    method: 'get',
+    headers: {
+      "Content-type": "application/json",
+      "authorization": 'JWT ' + jwt['access_token']
+    }
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (json) {
+      parse_requests([json])
+  })
+  .catch(function (error) {
+    console.log('Request failed', error);
+  });
+    return false;
+});
+
+$('#get_r_id').click(function () {
+    $('form').hide();
+    $('#get_request_id').show();
+});
+
+
+
 function parse_requests(client_requests) {
+    $('p').remove()
     $.each(client_requests, function(k, v) {
             $.each(v, function (key, value) {
                 $('#results')
-                    .append($("<div></div>")
-                        .attr("value", key)
+                    .append($("<p></p>")
                         .text(key +': '+value));
             });
         });

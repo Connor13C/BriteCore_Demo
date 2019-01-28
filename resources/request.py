@@ -6,15 +6,7 @@ from models.parser import Parser
 
 
 class Request(Resource):
-    @jwt_required()
-    def get(self):
-        parser = Parser()
-        parser.required_fields('id')
-        data = parser.parse_args()
-        request = RequestModel.select_by_id(data['id'])
-        if request:
-            return request.json(), 200
-        return {'message': 'Request not found'}, 404
+
 
     @jwt_required()
     def post(self):
@@ -48,12 +40,19 @@ class Request(Resource):
             return {'message': 'Something went wrong'}, 500
         return request.json(), 201
 
+
+class RequestID(Resource):
+
     @jwt_required()
-    def delete(self):
-        parser = Parser()
-        parser.required_fields('id')
-        data = parser.parse_args()
-        request = RequestModel.select_by_id(data['id'])
+    def get(self, request_id):
+        request = RequestModel.select_by_id(request_id)
+        if request:
+            return request.json(), 200
+        return {'message': 'Request not found'}, 404
+
+    @jwt_required()
+    def delete(self, request_id):
+        request = RequestModel.select_by_id(request_id)
         if request:
             request.delete_from_db()
             return {'message': 'Item deleted'}, 200
