@@ -26,6 +26,8 @@ class Client(Resource):
     def delete(self, name):
         client = ClientModel.select(name)
         if client:
+            for request in client.requests:
+                request.delete_from_db()
             client.delete_from_db()
             return {'message': 'Client deleted'}
         return {'message': 'Client not found'}
