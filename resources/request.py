@@ -6,9 +6,17 @@ from models.parser import Parser
 
 
 class Request(Resource):
-
+    """Request endpoint for url/request"""
     @jwt_required()
     def post(self):
+        """Post endpoint for adding requests into the database.
+
+        Headers: {Authorization: JWT jwt_token, ContentType: application/json}
+        Body must be json with priority, target_date, product_area, client_name,
+        title, description fields. Database must have matching client_name or
+        will return json message 400 error. If error occurs while inserting into
+        database will return json message and 500 error. On successful insert
+        into database returns json of request and 201 code."""
         parser = Parser()
         parser.required_fields(
             'priority',
@@ -41,9 +49,14 @@ class Request(Resource):
 
 
 class RequestID(Resource):
-
+    """Request endpoint for url/request/<int:request_id>"""
     @jwt_required()
     def get(self, request_id):
+        """Get endpoint for request with matching id in the database.
+
+        Headers: {Authorization: JWT jwt_token, ContentType: application/json}
+        If no request with ID found will return json message 404 error. If found
+        returns json of request with matching ID and 200 code."""
         request = RequestModel.select_by_id(request_id)
         if request:
             return request.json(), 200
@@ -51,6 +64,11 @@ class RequestID(Resource):
 
     @jwt_required()
     def delete(self, request_id):
+        """Get endpoint for request with matching id in the database.
+
+        Headers: {Authorization: JWT jwt_token, ContentType: application/json}
+        If no request with ID found will return json message and 404 error. If
+        found and deleted returns 200 code."""
         request = RequestModel.select_by_id(request_id)
         if request:
             request.delete_from_db()
@@ -59,7 +77,12 @@ class RequestID(Resource):
 
 
 class RequestList(Resource):
+    """Request endpoint for url/requests"""
     @jwt_required()
     def get(self):
+        """Get endpoint for all requests.
+
+        Headers: {Authorization: JWT jwt_token, ContentType: application/json}
+        Returns json object of all requests and 200 code."""
         return {'requests': [request.json()
                              for request in RequestModel.find_all()]}, 200

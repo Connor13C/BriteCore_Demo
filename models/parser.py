@@ -2,18 +2,13 @@ from flask_restful import reqparse
 
 
 class Parser(reqparse.RequestParser):
-
+    """Class extends reqparse and adds method to automate required arguments."""
     def __init__(self):
         super().__init__()
 
     def required_fields(self, *args):
+        """Function adds args given to required field for requests."""
         for arg in args:
-            if arg == 'id':
-                self.add_argument(
-                    'id',
-                    type=int,
-                    required=True,
-                    help='This field cannot be blank!')
             if arg == 'priority':
                 self.add_argument(
                     'priority',

@@ -93,30 +93,35 @@ $('#nav_del_c').click(function () {
 });
 
 $('#submit_request').click(function () {
-    fetch(origin + '/request', {
-    method: 'post',
-    headers: {
-      "Content-type": "application/json",
-      "authorization": 'JWT ' + jwt['access_token']
-    },
-    body: JSON.stringify({
-        "priority": $('#priority').val(),
-        "target_date": $('#target_date').val(),
-        "product_area": $('#product_area option:selected').text(),
-        "client_name": $('#client_list option:selected').text(),
-        "title": $('#title').val(),
-        "description": $('#description').val()
-    })
-  })
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (json) {
-      parse_requests([json])
-  })
-  .catch(function (error) {
-    console.log('Request failed', error);
-  });
+        fetch(origin + '/request', {
+            method: 'post',
+            headers: {
+                "Content-type": "application/json",
+                "authorization": 'JWT ' + jwt['access_token']
+            },
+            body: JSON.stringify({
+                "priority": $('#priority').val(),
+                "target_date": $('#target_date').val(),
+                "product_area": $('#product_area option:selected').text(),
+                "client_name": $('#client_list option:selected').text(),
+                "title": $('#title').val(),
+                "description": $('#description').val()
+            })
+        })
+            .then(function (response) {
+                if (response.status === 201){
+                    return response.json();
+                }
+                else{
+                    return {"message": "A field was left blank!"}
+                }
+            })
+            .then(function (json) {
+                parse_requests([json])
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
     return false;
 });
 
@@ -218,6 +223,7 @@ $('#delete_client_name').click(function () {
   });
     return false;
 });
+
 
 function parse_requests(client_requests) {
     $('p').remove();
