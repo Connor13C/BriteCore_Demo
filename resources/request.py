@@ -28,7 +28,7 @@ class Request(Resource):
         data = parser.parse_args()
         if not ClientModel.select(data['client_name']):
             return {
-                'message': f'Client with name {data["client_name"]} does not exist'}, 400
+                'message': 'Client does not exist'}, 400
         request = RequestModel(**data)
         client_name = data['client_name']
         priority = data['priority']
