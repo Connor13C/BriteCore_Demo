@@ -27,7 +27,7 @@ class Client(Resource):
         If error occurs while adding to database returns 500 error. Returns
         json object of client and empty requests field and 201 code."""
         if ClientModel.select(name):
-            return {'message': f'Client named {name} already exists'}, 400
+            return {'message': 'Client already exists'}, 400
         client = ClientModel(name)
         try:
             client.save_to_db()
