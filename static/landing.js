@@ -115,7 +115,7 @@ $('#submit_request').click(function() {
 				return response.json();
 			} else {
 				return {
-					"message": "A field was left blank!"
+					"message": "A field was left blank or a field was entered incorrectly!"
 				}
 			}
 		})

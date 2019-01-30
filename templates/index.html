@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
   <title>Feature Builder</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
 </head>
-
 <body>
+<h1>Feature Requester</h1>
   <ul id="choice">
     <li id="nav_post_r">Make a new feature request for client</li>
     <li id="nav_get_r">Find existing feature requests for client</li>
@@ -20,6 +20,7 @@
   </ul>
 
   <div id="content">
+    <div id="padding">
     <form id="login_field">
       <div class="input-group">
         <input id="username" type="text" class="form-control" name="username" placeholder="Username">
@@ -27,12 +28,13 @@
       <div class="input-group">
         <input id="password" type="password" class="form-control" name="password" placeholder="Password">
       </div>
-      <button id="login">Log in</button>
+      <button id="login">Log in</button><br>
+        For the purpose of the demo an authorized user has username: britecore & password: britecore
     </form>
 
     <form id="post_request">
       <label for="priority">Priority:</label><br>
-      <input type="text" id="priority" placeholder="Integer value: Highest priority is 1"><br>
+      <input type="text" id="priority" placeholder="Integer value: 1-n"><br>
       <label for="target_date">Target Date:</label><br>
       <input type="text" id="target_date" placeholder="MM/DD/YYYY"><br>
       <label for="product_area">Product Area:</label><br>
@@ -48,7 +50,7 @@
       <label for="title">Title:</label><br>
       <input type="text" id="title" placeholder="Short title for feature request"><br>
       <label for="description">Description:</label><br>
-      <input type="text" id="description"><br>
+        <textarea id="description"></textarea><br>
       <button id="submit_request">Submit Request</button>
     </form>
 
@@ -86,6 +88,7 @@
     </form>
 
     <form id="results"></form>
+    </div>
   </div>
   <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
   <script type=text/javascript src="{{url_for('static', filename='popper.min.js') }}"></script>
